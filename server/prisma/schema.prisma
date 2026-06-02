@@ -1,0 +1,61 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  phone     String @unique
+
+  prompts   Prompt[]
+
+  
+}
+
+model Category {
+  id             Int            @id @default(autoincrement())
+  name           String         @unique
+
+  subCategories  SubCategory[]
+  prompts        Prompt[]
+
+  createdAt      DateTime @default(now())
+}
+
+model SubCategory {
+  id          Int       @id @default(autoincrement())
+  name        String
+
+  categoryId  Int
+  category    Category  @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  prompts     Prompt[]
+
+  createdAt   DateTime @default(now())
+
+  @@unique([name, categoryId])
+}
+
+model Prompt {
+  id              Int      @id @default(autoincrement())
+
+  userId          Int
+  categoryId      Int
+  subCategoryId   Int
+
+  prompt          String
+  response        String
+
+  user            User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  category        Category    @relation(fields: [categoryId], references: [id])
+
+  subCategory     SubCategory @relation(fields: [subCategoryId], references: [id])
+
+  createdAt       DateTime @default(now())
+}
