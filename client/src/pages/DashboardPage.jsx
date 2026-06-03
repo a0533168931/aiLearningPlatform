@@ -1,3 +1,5 @@
+import LearningFlow from "../components/LearningFlow";
+
 export default function DashboardPage() {
-  return <h1>Dashboard Page</h1>;
+  return <LearningFlow />;
 }

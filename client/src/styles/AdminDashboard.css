@@ -1,0 +1,111 @@
+.admin-dashboard {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px;
+  min-height: 100vh;
+  background: #f4f7fb;
+  font-family: Arial, sans-serif;
+}
+
+.admin-dashboard h1 {
+  margin-bottom: 8px;
+  color: #1f2937;
+}
+
+.admin-description {
+  color: #4b5563;
+  margin-bottom: 20px;
+}
+
+.admin-error {
+  color: crimson;
+  margin-bottom: 12px;
+}
+
+.admin-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.admin-card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+}
+
+.admin-card h2 {
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 12px 10px;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
+}
+
+td {
+  color: #374151;
+}
+
+tbody tr {
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+tbody tr:hover {
+  background: #f8fafc;
+}
+
+.selected-row {
+  background: #eff6ff;
+}
+
+.history-list {
+  display: grid;
+  gap: 12px;
+}
+
+.history-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 14px;
+  background: #fafbfc;
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.04);
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.history-header span {
+  color: #666;
+  font-size: 12px;
+}
+
+.history-prompt {
+  margin: 8px 0 6px;
+  font-weight: 600;
+}
+
+.history-response {
+  white-space: pre-wrap;
+  color: #333;
+}

@@ -1,0 +1,96 @@
+.learning-flow {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.category-list,
+.subcategory-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.prompt-section {
+  margin-top: 24px;
+}
+
+.prompt-textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.prompt-actions {
+  margin-top: 12px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.prompt-actions button {
+  margin: 0 auto;
+}
+
+.prompt-info {
+  color: #666;
+  text-align: center;
+}
+
+.error-message {
+  color: crimson;
+  margin-top: 12px;
+}
+
+.ai-response {
+  margin-top: 18px;
+  padding: 16px;
+  border: 1px solid #d7d7d7;
+  border-radius: 8px;
+  background: #f9f9f9;
+  white-space: pre-wrap;
+}
+
+.ai-response p {
+  margin: 0;
+}
+
+.history-section {
+  margin-top: 18px;
+}
+
+.history-toggle {
+  margin-bottom: 12px;
+}
+
+.empty-history {
+  color: #666;
+}
+
+.history-list {
+  display: grid;
+  gap: 12px;
+}
+
+.history-card {
+  padding: 14px;
+  border: 1px solid #d7d7d7;
+  border-radius: 8px;
+  white-space: pre-wrap;
+}
+
+.history-card.user {
+  background: #eef6ff;
+}
+
+.history-card.ai {
+  background: #f9f9f9;
+}
+
+.history-card p {
+  margin: 6px 0 0;
+}

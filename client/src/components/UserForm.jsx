@@ -37,15 +37,16 @@ export default function UserForm() {
       setSuccess("");
 
       const response = await userApi.create(formData);
-      const user = response.data.data;
-// save user to localStorage
+      const user = response?.data?.data ?? response?.data ?? null;
+
+      if (!user) {
+        throw new Error("Registration response was empty.");
+      }
+
       localStorage.setItem("user", JSON.stringify(user));
 
       setSuccess("User registered successfully");
-
-      setTimeout(() => {
-        navigate("/dashboard");
-      }, 1000);
+      navigate("/dashboard", { replace: true });
     } catch (err) {
       setError(
         err.response?.data?.message ||
