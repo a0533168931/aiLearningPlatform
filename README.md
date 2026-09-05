@@ -8,7 +8,7 @@ The system enables users to learn through an AI-driven flow, while storing struc
 
 ## Features
 
-- User registration (phone-based)
+- User registration and login (email + password)
 - Category & subcategory learning flow
 - AI-generated educational responses (OpenAI integration)
 - Learning history tracking per user
@@ -58,10 +58,30 @@ User registers → selects category → submits question → AI generates respon
 ## Environment Variables (.env)
 
 The backend requires the following environment variables:
-DATABASE_URL
-PORT
-NODE_ENV
-OPENAI_API_KEY
+
+- `DATABASE_URL`
+- `PORT`
+- `NODE_ENV`
+- `OPENAI_API_KEY`
+- `JWT_SECRET`
+- `ADMIN_EMAIL` and `ADMIN_PASSWORD` (optional, used to bootstrap the first admin)
+- `ADMIN_NAME` (optional, defaults to `Admin`)
+
+Copy `server/.env.example` to `server/.env` and fill in real values. Never commit a real admin password.
+
+### Seed / first ADMIN user
+
+Public registration always creates `role = USER`. The first administrator is created by the Prisma seed, not by the register endpoint.
+
+1. Set `ADMIN_EMAIL` and `ADMIN_PASSWORD` in `server/.env`.
+2. From the `server/` directory, apply migrations and run:
+
+```bash
+npx prisma migrate deploy
+npx prisma db seed
+```
+
+The seed hashes the password, upserts the user by email, and sets `role = ADMIN`. It is safe to run repeatedly. The server also runs this seed on startup (existing project behavior).
 
 ---
 

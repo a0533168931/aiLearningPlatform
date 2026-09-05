@@ -3,13 +3,18 @@
  */
 const service = require('../services/prompt.service');
 const asyncHandler = require('../middlewares/asyncHandler');
+const httpError = require('../utils/httpError');
 
 /**
  * Create prompt
- * POST /api/prompts
+ * POST /api/prompts/create
+ * userId is taken from the authenticated token, not the request body.
  */
 const createPrompt = asyncHandler(async (req, res) => {
-  const result = await service.createPrompt(req.body);
+  const result = await service.createPrompt({
+    ...req.body,
+    userId: req.user.id,
+  });
 
   res.status(201).json({
     status: 'success',
@@ -19,10 +24,17 @@ const createPrompt = asyncHandler(async (req, res) => {
 
 /**
  * Get user history
- * GET /api/prompts/user/:userId
+ * GET /api/prompts/history/:userId
+ * Users may only read their own history; admins may read any user's history.
  */
 const getUserHistory = asyncHandler(async (req, res) => {
-  const data = await service.getUserHistory(Number(req.params.userId));
+  const userId = Number(req.params.userId);
+
+  if (req.user.role !== 'ADMIN' && req.user.id !== userId) {
+    throw httpError(403, 'Access denied.');
+  }
+
+  const data = await service.getUserHistory(userId);
 
   res.status(200).json({
     status: 'success',
@@ -32,7 +44,7 @@ const getUserHistory = asyncHandler(async (req, res) => {
 
 /**
  * Get prompt by ID
- * GET /api/prompts/prompt/:id
+ * GET /api/prompts/promptId/:id
  */
 const getPromptById = asyncHandler(async (req, res) => {
   const data = await service.getPromptById(Number(req.params.id));
@@ -45,7 +57,7 @@ const getPromptById = asyncHandler(async (req, res) => {
 
 /**
  * Get prompts by category
- * GET /api/prompts/category/:categoryId
+ * GET /api/prompts/categoryId/:categoryId
  */
 const getPromptsByCategory = asyncHandler(async (req, res) => {
   const data = await service.getPromptsByCategory(
