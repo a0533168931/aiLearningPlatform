@@ -1,9 +1,9 @@
-
-import UserForm from "../components/UserForm";
+﻿import UserForm from "../components/UserForm";
+import "../styles/UserForm.css";
 
 export default function RegisterPage() {
   return (
-    <div>
+    <div className="register-page">
       <UserForm />
     </div>
   );

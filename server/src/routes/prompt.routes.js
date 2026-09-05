@@ -7,13 +7,15 @@ const router = express.Router();
 
 const controller = require('../controllers/prompt.controller');
 const validate = require('../middlewares/validate.middleware');
+const auth = require('../middlewares/auth.middleware');
 
 /**
  * Create prompt
  */
 router.post(
   '/create',
-  validate(['userId', 'categoryId', 'subCategoryId', 'prompt']),
+  auth,
+  validate(['categoryId', 'subCategoryId', 'prompt']),
   controller.createPrompt
 );
 
@@ -22,14 +24,17 @@ router.post(
  */
 router.get(
   '/history/:userId',
+  auth,
   validate(['userId'], 'params'),
   controller.getUserHistory
 );
+
 /**
  * Prompt by ID
  */
 router.get(
   '/promptId/:id',
+  auth,
   validate(['id'], 'params'),
   controller.getPromptById
 );
@@ -39,7 +44,9 @@ router.get(
  */
 router.get(
   '/categoryId/:categoryId',
+  auth,
   validate(['categoryId'], 'params'),
   controller.getPromptsByCategory
 );
+
 module.exports = router;

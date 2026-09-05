@@ -1,4 +1,3 @@
-
 /**
  * Generic request validation middleware.
  *
@@ -8,12 +7,24 @@
 
 const rules = {
   name: {
-    test: (v) => /^[\p{L}\s]{2,100}$/u.test(v.trim()),
+    test: (v) => /^[\p{L}\s]{2,100}$/u.test(String(v).trim()),
     message: 'Name must contain letters only (min 2 characters)',
   },
+  email: {
+    test: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(v).trim()),
+    message: 'Invalid email address',
+  },
+  password: {
+    test: (v) => typeof v === 'string' && v.length >= 8,
+    message: 'Password must be at least 8 characters',
+  },
   phone: {
-    test: (v) => /^[0-9+\-() ]{7,20}$/.test(v.trim()),
+    test: (v) => /^[0-9+\-() ]{7,20}$/.test(String(v).trim()),
     message: 'Invalid phone number',
+  },
+  id: {
+    test: (v) => Number.isInteger(Number(v)) && Number(v) > 0,
+    message: 'id must be a positive integer',
   },
   userId: {
     test: (v) => Number.isInteger(Number(v)) && Number(v) > 0,
@@ -28,13 +39,27 @@ const rules = {
     message: 'subCategoryId must be a positive integer',
   },
   prompt: {
-    test: (v) => v.trim().length >= 3,
+    test: (v) => String(v).trim().length >= 3,
     message: 'Prompt must be at least 3 characters',
   },
 };
 
+const normalizeField = (field, value) => {
+  if (typeof value !== 'string') return value;
+  if (field === 'password') return value;
+  const trimmed = value.trim();
+  if (field === 'email') return trimmed.toLowerCase();
+  return trimmed;
+};
+
 const validate = (fields, source = 'body') => (req, res, next) => {
   const data = req[source] || {};
+
+  for (const field of fields) {
+    if (typeof data[field] === 'string') {
+      data[field] = normalizeField(field, data[field]);
+    }
+  }
 
   const missing = fields.filter((field) => {
     const value = data[field];
