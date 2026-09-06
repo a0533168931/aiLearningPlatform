@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
 import { promptApi } from "../services/api";
 
 export default function HistoryPage() {
@@ -38,9 +37,7 @@ export default function HistoryPage() {
   }, []);
 
   return (
-    <>
-      <Navbar />
-      <main style={{ maxWidth: 1000, margin: "0 auto", padding: 24 }}>
+    <main style={{ maxWidth: 1000, margin: "0 auto", padding: 24 }}>
       <h1>Learning History</h1>
       <p style={{ color: "#555" }}>Newest requests appear at the top.</p>
 
@@ -89,6 +86,5 @@ export default function HistoryPage() {
         </section>
       )}
     </main>
-    </>
   );
 }

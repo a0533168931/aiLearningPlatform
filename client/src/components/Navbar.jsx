@@ -1,20 +1,14 @@
-import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useAuthStore } from "../store/authStore";
 import "../styles/Navbar.css";
 
 export default function Navbar() {
   const navigate = useNavigate();
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem("user") || "null");
-    setUser(storedUser);
-  }, []);
+  const user = useAuthStore((state) => state.user);
+  const logout = useAuthStore((state) => state.logout);
 
   const handleLogout = () => {
-    localStorage.removeItem("user");
-    localStorage.removeItem("token");
-    setUser(null);
+    logout();
     navigate("/", { replace: true });
   };
 
@@ -31,20 +25,23 @@ export default function Navbar() {
 
         <ul className="navbar-links">
           <li>
-            <a href="#" onClick={(e) => { e.preventDefault(); navigate("/dashboard"); }}>
-              Dashboard
-            </a>
+            <NavLink to="/dashboard">Dashboard</NavLink>
           </li>
           <li>
-            <a href="#" onClick={(e) => { e.preventDefault(); navigate("/history"); }}>
-              History
-            </a>
+            <NavLink to="/categories">Categories</NavLink>
+          </li>
+          <li>
+            <NavLink to="/ask">Ask</NavLink>
+          </li>
+          <li>
+            <NavLink to="/history">History</NavLink>
+          </li>
+          <li>
+            <NavLink to="/profile">Profile</NavLink>
           </li>
           {user.role === "ADMIN" && (
             <li>
-              <a href="#" onClick={(e) => { e.preventDefault(); navigate("/admin"); }}>
-                Admin
-              </a>
+              <NavLink to="/admin">Admin</NavLink>
             </li>
           )}
         </ul>
