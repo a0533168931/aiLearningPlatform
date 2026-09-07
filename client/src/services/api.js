@@ -16,8 +16,6 @@ api.interceptors.request.use((config) => {
 });
 
 export const userApi = {
-  create: (data) => api.post("/users/create", data),
-  login: (data) => api.post("/users/login", data),
   getAll: async () => {
     const res = await api.get("/users/all");
     return res.data.data;
