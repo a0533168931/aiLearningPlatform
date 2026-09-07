@@ -8,11 +8,13 @@ import HistoryLayout from '../layouts/HistoryLayout';
 import AdminCategoriesLayout from '../layouts/AdminCategoriesLayout';
 import ProtectedRoute from './ProtectedRoute';
 import AdminRoute from './AdminRoute';
-import HomePage from '../pages/HomePage';
+import GuestRoute from './GuestRoute';
+import HomePage from '../pages/public/HomePage';
+import LoginPage from '../pages/public/LoginPage';
+import RegisterPage from '../pages/public/RegisterPage';
 import NotFoundPage from '../pages/NotFoundPage';
 import UnauthorizedPage from '../pages/UnauthorizedPage';
 import PlaceholderPage from '../pages/PlaceholderPage';
-import RegisterPage from '../pages/RegisterPage';
 import DashboardPage from '../pages/DashboardPage';
 import HistoryPage from '../pages/HistoryPage';
 import AdminPage from '../pages/AdminPage';
@@ -22,8 +24,13 @@ const router = createBrowserRouter([
     element: <PublicLayout />,
     children: [
       { index: true, element: <HomePage /> },
-      { path: 'login', element: <RegisterPage /> },
-      { path: 'register', element: <RegisterPage /> },
+      {
+        element: <GuestRoute />,
+        children: [
+          { path: 'login', element: <LoginPage /> },
+          { path: 'register', element: <RegisterPage /> },
+        ],
+      },
     ],
   },
   {

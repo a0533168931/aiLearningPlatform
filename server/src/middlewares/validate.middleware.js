@@ -15,8 +15,8 @@ const rules = {
     message: 'Invalid email address',
   },
   password: {
-    test: (v) => typeof v === 'string' && v.length >= 8,
-    message: 'Password must be at least 8 characters',
+    test: (v) => typeof v === 'string' && v.length >= 4,
+    message: 'Password must be at least 4 characters',
   },
   phone: {
     test: (v) => /^[0-9+\-() ]{7,20}$/.test(String(v).trim()),

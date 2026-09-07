@@ -1,16 +1,9 @@
-import { NavLink, useNavigate } from "react-router-dom";
-import { useAuthStore } from "../store/authStore";
+import { NavLink } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 import "../styles/Navbar.css";
 
 export default function Navbar() {
-  const navigate = useNavigate();
-  const user = useAuthStore((state) => state.user);
-  const logout = useAuthStore((state) => state.logout);
-
-  const handleLogout = () => {
-    logout();
-    navigate("/", { replace: true });
-  };
+  const { user, logout } = useAuth();
 
   if (!user?.id) {
     return null;
@@ -50,7 +43,7 @@ export default function Navbar() {
           <span className="user-info">
             {user.name} ({user.role})
           </span>
-          <button className="logout-btn" onClick={handleLogout}>
+          <button className="logout-btn" onClick={logout}>
             Logout
           </button>
         </div>

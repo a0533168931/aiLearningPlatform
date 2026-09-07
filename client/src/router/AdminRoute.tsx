@@ -3,13 +3,13 @@ import { useAuthStore } from '../store/authStore';
 
 export default function AdminRoute() {
   const user = useAuthStore((state) => state.user);
-  const isAuthenticated = user != null && typeof user.id === 'number';
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
 
   if (!isAuthenticated) {
     return <Navigate to="/login" replace />;
   }
 
-  if (user.role !== 'ADMIN') {
+  if (user?.role !== 'ADMIN') {
     return <Navigate to="/unauthorized" replace />;
   }
 
