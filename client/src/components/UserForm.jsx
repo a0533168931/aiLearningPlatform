@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { userApi } from "../services/api";
+import { useAuthStore } from "../store/authStore";
 import "../styles/UserForm.css";
 
 export default function UserForm() {
@@ -25,13 +26,12 @@ export default function UserForm() {
       setSuccess("");
 
       const response = await userApi.create(formData);
-      const user = response?.data?.data ?? response?.data ?? null;
-      const token = response?.data?.token ?? response?.token ?? null;
+      const user = response?.data?.user;
+      const token = response?.data?.token;
 
-      if (!user) throw new Error("Registration response was empty.");
+      if (!user?.id || !token) throw new Error("Registration response was empty.");
 
-      localStorage.setItem("user", JSON.stringify(user));
-      if (token) localStorage.setItem("token", token);
+      useAuthStore.getState().setAuth(user, token);
 
       setSuccess("User registered successfully");
       navigate("/dashboard", { replace: true });
@@ -39,13 +39,12 @@ export default function UserForm() {
       if (err.response?.status === 409) {
         try {
           const loginResponse = await userApi.login({ phone: formData.phone });
-          const user = loginResponse?.data?.data ?? loginResponse?.data ?? null;
-          const token = loginResponse?.data?.token ?? loginResponse?.token ?? null;
+          const user = loginResponse?.data?.user;
+          const token = loginResponse?.data?.token;
 
-          if (!user) throw new Error("Login failed.");
+          if (!user?.id || !token) throw new Error("Login failed.", { cause: err });
 
-          localStorage.setItem("user", JSON.stringify(user));
-          if (token) localStorage.setItem("token", token);
+          useAuthStore.getState().setAuth(user, token);
 
           setSuccess("User already exists. Logged in successfully.");
           navigate("/dashboard", { replace: true });

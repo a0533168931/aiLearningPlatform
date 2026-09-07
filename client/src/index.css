@@ -4,3 +4,4 @@ body { margin: 0; font-family: system-ui, sans-serif; background: linear-gradien
 h1, h2, h3 { margin: 0 0 12px; font-weight: 700; }
 p { margin: 0; }
 button { font-family: inherit; cursor: pointer; }
+.status-page { max-width: 720px; margin: 0 auto; padding: 40px 24px; }

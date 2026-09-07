@@ -52,8 +52,39 @@
   cursor: pointer;
 }
 
-.navbar-links a:hover {
+.navbar-links a:hover,
+.navbar-links a.active {
   background-color: rgba(255, 255, 255, 0.2);
+}
+
+.section-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px 24px;
+}
+
+.section-nav a {
+  padding: 6px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #3730a3;
+  background: #ede9fe;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.section-nav a.active {
+  background: #7c3aed;
+  color: #fff;
+}
+
+.status-page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 40px 24px;
 }
 
 .navbar-user {
