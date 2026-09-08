@@ -20,3 +20,7 @@ export function getApiErrorMessage(error: unknown): string {
 
   return FALLBACK_MESSAGE;
 }
+
+export function isApiStatus(error: unknown, status: number): boolean {
+  return axios.isAxiosError(error) && error.response?.status === status;
+}

@@ -1,5 +1,8 @@
-import { useForm } from 'react-hook-form';
+import Alert from '@mui/material/Alert';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import AuthCard from '../../components/auth/AuthCard';
 import { useRegister } from '../../hooks/useAuth';
@@ -41,9 +44,12 @@ export default function RegisterPage() {
       <form className="auth-form" onSubmit={handleSubmit(onSubmit)} noValidate>
         <div className="auth-field">
           <label htmlFor="name">Full Name</label>
-          <input
+          <TextField
             id="name"
             type="text"
+            hiddenLabel
+            fullWidth
+            error={Boolean(errors.name)}
             autoComplete="name"
             aria-invalid={errors.name ? true : undefined}
             aria-describedby={errors.name ? 'name-error' : undefined}
@@ -58,9 +64,12 @@ export default function RegisterPage() {
 
         <div className="auth-field">
           <label htmlFor="email">Email</label>
-          <input
+          <TextField
             id="email"
             type="email"
+            hiddenLabel
+            fullWidth
+            error={Boolean(errors.email)}
             autoComplete="email"
             aria-invalid={errors.email ? true : undefined}
             aria-describedby={errors.email ? 'email-error' : undefined}
@@ -75,9 +84,12 @@ export default function RegisterPage() {
 
         <div className="auth-field">
           <label htmlFor="password">Password</label>
-          <input
+          <TextField
             id="password"
             type="password"
+            hiddenLabel
+            fullWidth
+            error={Boolean(errors.password)}
             autoComplete="new-password"
             aria-invalid={errors.password ? true : undefined}
             aria-describedby={errors.password ? 'password-error' : undefined}
@@ -92,12 +104,17 @@ export default function RegisterPage() {
 
         <div className="auth-field">
           <label htmlFor="confirmPassword">Confirm Password</label>
-          <input
+          <TextField
             id="confirmPassword"
             type="password"
+            hiddenLabel
+            fullWidth
+            error={Boolean(errors.confirmPassword)}
             autoComplete="new-password"
             aria-invalid={errors.confirmPassword ? true : undefined}
-            aria-describedby={errors.confirmPassword ? 'confirm-password-error' : undefined}
+            aria-describedby={
+              errors.confirmPassword ? 'confirm-password-error' : undefined
+            }
             {...register('confirmPassword')}
           />
           {errors.confirmPassword && (
@@ -108,14 +125,20 @@ export default function RegisterPage() {
         </div>
 
         {registerMutation.error && (
-          <p className="form-message error" role="alert">
+          <Alert severity="error" className="form-message error">
             {getApiErrorMessage(registerMutation.error)}
-          </p>
+          </Alert>
         )}
 
-        <button className="submit-btn" type="submit" disabled={registerMutation.isPending}>
+        <Button
+          className="submit-btn"
+          type="submit"
+          variant="contained"
+          fullWidth
+          disabled={registerMutation.isPending}
+        >
           {registerMutation.isPending ? 'Creating account...' : 'Create account'}
-        </button>
+        </Button>
       </form>
     </AuthCard>
   );

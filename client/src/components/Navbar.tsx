@@ -1,6 +1,7 @@
-import { NavLink } from "react-router-dom";
-import { useAuth } from "../hooks/useAuth";
-import "../styles/Navbar.css";
+import Button from '@mui/material/Button';
+import { NavLink } from 'react-router-dom';
+import { useAuth } from '../hooks/useAuth';
+import '../styles/Navbar.css';
 
 export default function Navbar() {
   const { user, logout } = useAuth();
@@ -32,7 +33,7 @@ export default function Navbar() {
           <li>
             <NavLink to="/profile">Profile</NavLink>
           </li>
-          {user.role === "ADMIN" && (
+          {user.role === 'ADMIN' && (
             <li>
               <NavLink to="/admin">Admin</NavLink>
             </li>
@@ -43,9 +44,9 @@ export default function Navbar() {
           <span className="user-info">
             {user.name} ({user.role})
           </span>
-          <button className="logout-btn" onClick={logout}>
+          <Button className="logout-btn" type="button" variant="text" onClick={logout}>
             Logout
-          </button>
+          </Button>
         </div>
       </div>
     </nav>

@@ -1,4 +1,4 @@
-import api from '../lib/axios';
+import api from './client';
 import type { AuthResponse, LoginRequest, RegisterRequest } from '../types/auth';
 
 function parseAuthResponse(data: AuthResponse): AuthResponse {

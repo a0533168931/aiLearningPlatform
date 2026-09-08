@@ -1,3 +1,4 @@
+import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import '../../styles/home.css';
@@ -14,17 +15,32 @@ export default function HomePage() {
         </Link>
         <div className="home-header-actions">
           {isAuthenticated ? (
-            <Link className="home-btn home-btn-primary" to="/dashboard">
+            <Button
+              className="home-btn home-btn-primary"
+              component={Link}
+              to="/dashboard"
+              variant="contained"
+            >
               Dashboard
-            </Link>
+            </Button>
           ) : (
             <>
-              <Link className="home-btn home-btn-secondary" to="/login">
+              <Button
+                className="home-btn home-btn-secondary"
+                component={Link}
+                to="/login"
+                variant="text"
+              >
                 Login
-              </Link>
-              <Link className="home-btn home-btn-primary" to="/register">
+              </Button>
+              <Button
+                className="home-btn home-btn-primary"
+                component={Link}
+                to="/register"
+                variant="contained"
+              >
                 Register
-              </Link>
+              </Button>
             </>
           )}
         </div>
@@ -39,15 +55,30 @@ export default function HomePage() {
             lesson so you can return to it anytime.
           </p>
           <div className="home-actions">
-            <Link className="home-btn home-btn-primary" to={startLearningTo}>
+            <Button
+              className="home-btn home-btn-primary"
+              component={Link}
+              to={startLearningTo}
+              variant="contained"
+            >
               Start Learning
-            </Link>
-            <Link className="home-btn home-btn-secondary" to="/login">
+            </Button>
+            <Button
+              className="home-btn home-btn-secondary"
+              component={Link}
+              to="/login"
+              variant="text"
+            >
               Login
-            </Link>
-            <Link className="home-btn home-btn-secondary" to="/register">
+            </Button>
+            <Button
+              className="home-btn home-btn-secondary"
+              component={Link}
+              to="/register"
+              variant="text"
+            >
               Register
-            </Link>
+            </Button>
           </div>
         </section>
 

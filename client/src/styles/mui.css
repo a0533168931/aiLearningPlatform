@@ -1,0 +1,64 @@
+/* Keep existing class-based styles in front of MUI defaults. */
+.MuiButton-root.submit-btn,
+.MuiButton-root.app-btn,
+.MuiButton-root.home-btn,
+.MuiButton-root.logout-btn,
+.MuiButton-root.ai-tutor-submit,
+.MuiButton-root.ai-tutor-again {
+  font-family: inherit;
+  line-height: inherit;
+  min-width: 0;
+  box-shadow: none;
+}
+
+.MuiButton-root.submit-btn,
+.MuiButton-root.app-btn,
+.MuiButton-root.home-btn-primary,
+.MuiButton-root.ai-tutor-submit {
+  color: #fff;
+}
+
+.MuiButton-root.app-btn.secondary,
+.MuiButton-root.home-btn-secondary {
+  color: #4c1d95;
+  background-color: transparent;
+}
+
+.MuiButton-root.app-btn.danger {
+  color: #be123c;
+  background-color: transparent;
+}
+
+.MuiButton-root.logout-btn {
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.MuiButton-root.logout-btn:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.auth-field .MuiOutlinedInput-input,
+.app-field .MuiOutlinedInput-input,
+.category-search .MuiOutlinedInput-input,
+.ai-tutor-field .MuiOutlinedInput-input {
+  border: none;
+  box-shadow: none;
+  background: transparent;
+  border-radius: 0;
+}
+
+.auth-field .MuiOutlinedInput-input:focus,
+.app-field .MuiOutlinedInput-input:focus,
+.category-search .MuiOutlinedInput-input:focus,
+.ai-tutor-field .MuiOutlinedInput-input:focus {
+  border: none;
+  box-shadow: none;
+}
+
+.mui-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 16px;
+}

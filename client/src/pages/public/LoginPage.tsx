@@ -1,5 +1,8 @@
-import { useForm } from 'react-hook-form';
+import Alert from '@mui/material/Alert';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import AuthCard from '../../components/auth/AuthCard';
 import { useLogin } from '../../hooks/useAuth';
@@ -37,9 +40,12 @@ export default function LoginPage() {
       <form className="auth-form" onSubmit={handleSubmit(onSubmit)} noValidate>
         <div className="auth-field">
           <label htmlFor="email">Email</label>
-          <input
+          <TextField
             id="email"
             type="email"
+            hiddenLabel
+            fullWidth
+            error={Boolean(errors.email)}
             autoComplete="email"
             aria-invalid={errors.email ? true : undefined}
             aria-describedby={errors.email ? 'email-error' : undefined}
@@ -54,9 +60,12 @@ export default function LoginPage() {
 
         <div className="auth-field">
           <label htmlFor="password">Password</label>
-          <input
+          <TextField
             id="password"
             type="password"
+            hiddenLabel
+            fullWidth
+            error={Boolean(errors.password)}
             autoComplete="current-password"
             aria-invalid={errors.password ? true : undefined}
             aria-describedby={errors.password ? 'password-error' : undefined}
@@ -70,14 +79,20 @@ export default function LoginPage() {
         </div>
 
         {loginMutation.error && (
-          <p className="form-message error" role="alert">
+          <Alert severity="error" className="form-message error">
             {getApiErrorMessage(loginMutation.error)}
-          </p>
+          </Alert>
         )}
 
-        <button className="submit-btn" type="submit" disabled={loginMutation.isPending}>
+        <Button
+          className="submit-btn"
+          type="submit"
+          variant="contained"
+          fullWidth
+          disabled={loginMutation.isPending}
+        >
           {loginMutation.isPending ? 'Signing in...' : 'Sign in'}
-        </button>
+        </Button>
       </form>
     </AuthCard>
   );

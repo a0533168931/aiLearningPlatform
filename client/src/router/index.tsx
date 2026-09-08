@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, Navigate } from 'react-router-dom';
 import PublicLayout from '../layouts/PublicLayout';
 import AppLayout from '../layouts/AppLayout';
 import AdminLayout from '../layouts/AdminLayout';
@@ -14,10 +14,20 @@ import LoginPage from '../pages/public/LoginPage';
 import RegisterPage from '../pages/public/RegisterPage';
 import NotFoundPage from '../pages/NotFoundPage';
 import UnauthorizedPage from '../pages/UnauthorizedPage';
-import PlaceholderPage from '../pages/PlaceholderPage';
 import DashboardPage from '../pages/DashboardPage';
 import HistoryPage from '../pages/HistoryPage';
-import AdminPage from '../pages/AdminPage';
+import PromptDetailsPage from '../pages/history/PromptDetailsPage';
+import ProfilePage from '../pages/ProfilePage';
+import AdminHomePage from '../pages/admin/AdminHomePage';
+import AdminUsersPage from '../pages/admin/AdminUsersPage';
+import AdminCategoriesPage from '../pages/admin/AdminCategoriesPage';
+import AdminCategoryNewPage from '../pages/admin/AdminCategoryNewPage';
+import AdminCategoryEditPage from '../pages/admin/AdminCategoryEditPage';
+import CategoriesPage from '../pages/categories/CategoriesPage';
+import CategoryOverviewPage from '../pages/categories/CategoryOverviewPage';
+import CategorySubcategoriesPage from '../pages/categories/CategorySubcategoriesPage';
+import CategoryAskPage from '../pages/categories/CategoryAskPage';
+import CategoryHistoryPage from '../pages/categories/CategoryHistoryPage';
 
 const router = createBrowserRouter([
   {
@@ -44,29 +54,29 @@ const router = createBrowserRouter([
             path: 'categories',
             element: <CategoriesLayout />,
             children: [
-              { index: true, element: <PlaceholderPage /> },
+              { index: true, element: <CategoriesPage /> },
               {
                 path: ':categoryId',
                 element: <CategoryLayout />,
                 children: [
-                  { index: true, element: <PlaceholderPage /> },
-                  { path: 'subcategories', element: <PlaceholderPage /> },
-                  { path: 'ask', element: <PlaceholderPage /> },
-                  { path: 'history', element: <PlaceholderPage /> },
+                  { index: true, element: <CategoryOverviewPage /> },
+                  { path: 'subcategories', element: <CategorySubcategoriesPage /> },
+                  { path: 'ask', element: <CategoryAskPage /> },
+                  { path: 'history', element: <CategoryHistoryPage /> },
                 ],
               },
             ],
           },
-          { path: 'ask', element: <PlaceholderPage /> },
+          { path: 'ask', element: <Navigate to="/categories" replace /> },
           {
             path: 'history',
             element: <HistoryLayout />,
             children: [
               { index: true, element: <HistoryPage /> },
-              { path: ':promptId', element: <PlaceholderPage /> },
+              { path: ':promptId', element: <PromptDetailsPage /> },
             ],
           },
-          { path: 'profile', element: <PlaceholderPage /> },
+          { path: 'profile', element: <ProfilePage /> },
         ],
       },
     ],
@@ -78,15 +88,15 @@ const router = createBrowserRouter([
       {
         element: <AdminLayout />,
         children: [
-          { index: true, element: <AdminPage /> },
-          { path: 'users', element: <PlaceholderPage /> },
+          { index: true, element: <AdminHomePage /> },
+          { path: 'users', element: <AdminUsersPage /> },
           {
             path: 'categories',
             element: <AdminCategoriesLayout />,
             children: [
-              { index: true, element: <PlaceholderPage /> },
-              { path: 'new', element: <PlaceholderPage /> },
-              { path: ':categoryId/edit', element: <PlaceholderPage /> },
+              { index: true, element: <AdminCategoriesPage /> },
+              { path: 'new', element: <AdminCategoryNewPage /> },
+              { path: ':categoryId/edit', element: <AdminCategoryEditPage /> },
             ],
           },
         ],
