@@ -1,0 +1,221 @@
+.category-page,
+.category-shell {
+  max-width: 960px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 28px 24px 64px;
+}
+
+.category-page h1,
+.category-shell h1 {
+  font-size: clamp(1.6rem, 3vw, 2rem);
+  background: linear-gradient(90deg, #7c3aed, #2563eb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.category-content h2 {
+  font-size: 1.2rem;
+  color: #4c1d95;
+}
+
+.category-lede,
+.category-copy {
+  color: #3730a3;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.category-shell .section-nav {
+  max-width: none;
+  margin: 0 0 8px;
+  padding: 12px 0;
+}
+
+.category-kicker {
+  margin: 0 0 6px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.category-kicker a {
+  color: #6d28d9;
+  text-decoration: none;
+}
+
+.category-kicker a:hover,
+.category-kicker a:focus-visible,
+.category-page a:focus-visible,
+.category-content a:focus-visible,
+.category-card:focus-visible,
+.subcategory-card:focus-visible,
+.category-history-card:focus-visible,
+.category-action:focus-visible,
+.category-search input:focus-visible {
+  outline: 3px solid rgba(124, 58, 237, 0.35);
+  outline-offset: 2px;
+}
+
+.category-search {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 360px;
+  margin: 20px 0 16px;
+}
+
+.category-search label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #6d4bb0;
+}
+
+.category-search input {
+  padding: 12px 16px;
+  border: 1.5px solid #ddd6fe;
+  border-radius: 12px;
+  font-size: 15px;
+  font-family: inherit;
+  color: #1e1b4b;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.category-search input:focus {
+  border-color: #a78bfa;
+  box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.18);
+  outline: none;
+}
+
+.category-results-meta {
+  font-size: 13px;
+  color: #6d4bb0;
+  margin-bottom: 16px;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.category-card,
+.subcategory-card,
+.category-panel,
+.category-history-card {
+  display: block;
+  background: rgba(255, 255, 255, 0.86);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 8px 32px rgba(120, 80, 220, 0.08);
+  text-decoration: none;
+  color: inherit;
+}
+
+.category-card h2,
+.subcategory-card h2 {
+  font-size: 1.1rem;
+  margin: 0 0 8px;
+  color: #4c1d95;
+}
+
+.category-card-action,
+.subcategory-card-action {
+  font-size: 13px;
+  font-weight: 700;
+  color: #6d28d9;
+}
+
+.category-card:hover,
+.subcategory-card:hover,
+.category-history-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(120, 80, 220, 0.14);
+}
+
+.category-content {
+  padding: 8px 0 0;
+}
+
+.category-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.category-action {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 16px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #7c3aed, #2563eb);
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.28);
+}
+
+.category-action.secondary {
+  background: #ede9fe;
+  color: #4c1d95;
+  box-shadow: none;
+}
+
+.category-alert {
+  margin: 0 0 16px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: #fff1f2;
+  border: 1px solid #fecdd3;
+  color: #be123c;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.category-muted {
+  color: #6d4bb0;
+  font-size: 14px;
+}
+
+.category-history-card header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.category-history-card time {
+  color: #666;
+  font-size: 13px;
+}
+
+.category-history-prompt {
+  font-weight: 600;
+  margin: 0 0 10px;
+  color: #1e1b4b;
+}
+
+.category-history-response {
+  margin: 0;
+  padding: 12px;
+  border-radius: 8px;
+  background: #f7f7f7;
+  white-space: pre-wrap;
+  line-height: 1.6;
+}
+
+@media (max-width: 640px) {
+  .category-page,
+  .category-shell {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .category-search {
+    max-width: none;
+  }
+}
